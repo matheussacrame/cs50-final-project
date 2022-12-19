@@ -1,0 +1,19 @@
+.card-body {
+    background-color: #e9ecef;
+}
+
+footer {
+    background-color: #89c0a7;
+}
+
+p {
+    font-family: Georgia;
+}
+
+#see_more {
+    display: none;
+}
+
+#table_calories {
+    background-color: #89c0a7;
+}
