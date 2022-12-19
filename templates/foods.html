@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Foods
+{% endblock %}
+
+{% block main %}
+<h1 class="text-center">Your foods!</h1>
+<hr>
+<div class="d-flex flex-wrap row">
+    <div class="col-sm py-2 pe-5 text-start">
+        <p>Which foods do you eat? Register it once into the database so we can keep track of it!</p>
+        <p>You just need to type the <b>food name</b>, its <b>calories</b> in <b>100g</b> of that food and each of its three macros in the same 100g portion.</p>
+        <p>This information can be easily found on sites such as <a href="http://www.tbca.net.br/base-dados/composicao_alimentos.php" target="_blank">TBCA</a> for brazilians or <a href="https://fdc.nal.usda.gov/fdc-app.html" target="_blank">FDC</a> for americans.</p>
+        <p>Remember the name of the food - you will use it to register your meals!</p>
+    </div>
+    <div class="col-sm p-2 text-center">
+        <div class="card">
+            <div class="card-body shadow rounded">
+                <form action="/foods" method="post">
+                    <input class="form-control" autocomplete="off" name="food" placeholder="Type food name" type="text">
+                    <input class="form-control mt-4" autocomplete="off" min="0" name="calories" placeholder="Calories (kcal/100g): (format: xxx)" step="1" type="number">
+                    <input class="form-control mt-4" autocomplete="off" min="0" name="proteins" placeholder="Protein (g/100g): (format: xx.xx)" step="0.01" type="number">
+                    <input class="form-control mt-4" autocomplete="off" min="0" name="fats" placeholder="Fat (g/100g): (format: xx.xx)" step="0.01" type="number">
+                    <input class="form-control mt-4" autocomplete="off" min="0" name="carbs" placeholder="Carbs (g/100g): (format: xx.xx)" step="0.01" type="number">
+                    <button class="btn btn-success mt-4" type="submit">Register!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    <button class="btn btn-success mt-4" id="btn_open">See all registered foods!</button>
+</div>
+<div id="see_more">
+    <hr>
+    <h4 class="text-center">Registered foods:</h4>
+    <div class="d-flex flex-wrap row">
+        <div class="col-sm text-start">
+            <table class="table table-bordered table-striped table-hover mt-4">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>Food name:</th>
+                        <th>Calories: (kcal/100g)</th>
+                        <th>Proteins: (g/100g)</th>
+                        <th>Fats: (g/100g)</th>
+                        <th>Carbs: (g/100g)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for food in list_dict_all_foods %}
+                    <tr>
+                        <td>{{ food["name"] }}</td>
+                        <td>{{ food["calories"] }}</td>
+                        <td>{{ food["proteins"] }}</td>
+                        <td>{{ food["fats"] }}</td>
+                        <td>{{ food["carbs"] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

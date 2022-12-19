@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+<h1 class="text-center">Nutrition overview!</h1>
+<hr>
+<div class="d-flex flex-wrap row">
+    <div class="col-sm py-2 pe-5 text-start">
+        <p>Welcome to your nutrition overview! Check how much you've eaten, how much you should still eat and which macros to focus on!</p>
+        <ul>
+            <li>Use the <a href="/weight"><b>Weight</b></a> page to register today's weight - important for calculations!</li>
+            <li>Use the <a href="/goals"><b>Goals</b></a> page to set today's goals!</li>
+            <li>Use the <a href="/foods"><b>Foods</b></a> page to register new foods into the database and the <a href="/meals"><b>Meals</b></a> page to register today's meals!</li>
+        </ul>
+    </div>
+    <div class="col-sm p-2 text-center">
+        <table class="table table-bordered">
+            <thead>
+                <tr id="table_calories">
+                    <th scope="col">Calories consumed:</th>
+                    <th scope="col">Calories left:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ cal_consumed | round | int }} kcal</td>
+                    <td>{{ cal_left | round | int }} kcal</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered table-striped table-hover mt-4">
+            <thead class="table-secondary">
+                <tr>
+                    <th>Macros:</th>
+                    <th>Quantity consumed:</th>
+                    <th>Quantity left:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Proteins:</th>
+                    <td>{{ pro_consumed | round(2) }} g</td>
+                    <td>{{ pro_left | round(2) }} g</td>
+                </tr>
+                <tr>
+                    <th>Fats:</th>
+                    <td>{{ fat_consumed | round(2) }} g</td>
+                    <td>{{ fat_left | round(2) }} g</td>
+                </tr>
+                <tr>
+                    <th>Carbs:</th>
+                    <td>{{ car_consumed | round(2) }} g</td>
+                    <td>{{ car_left | round(2) }} g</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="d-flex">
+    <table class="table table-bordered table-striped table-hover mt-4">
+        <thead class="table-secondary">
+            <tr>
+                <th>Meals eaten:</th>
+                <th>Quantity:</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for meal in list_dict_meals %}
+            <tr>
+                <td>{{ meal["food"] }}</td>
+                <td>{{ meal["quantity"] }} g</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Goals
+{% endblock %}
+
+{% block main %}
+<h2 class="text-center">Your goals!</h2>
+<hr>
+<div class="d-flex flex-wrap row">
+    <div class="col-sm py-2 pe-5 text-start">
+        <p><b>Welcome to where you set your goals!</b></p>
+        <p>We can control our body composition through <b>calories</b> and macronutrients - called <b>"macros"</b> here.</p>
+        <p>If you want to <b>lose weight</b>, you just need to eat less than you spend (also known as being in <b>"caloric deficit"</b>).</p>
+        <p>If you want to <b>gain weight/muscles</b>, the opposit: eat more than you spend (a.k.a <b>"caloric surplus"</b>).</p>
+        <p>And you control that by setting a caloric expense goal!</p>
+        <p>You can automatically calculate yout caloric expense or you can set it manually - which is useful for weight loss diets. After weeks of caloric deficit, our body tends to keep decreasing our caloric expense, so you can manually decrease it here.</p>
+    </div>
+    <div class="col-sm p-2 text-center">
+        <div class="card">
+            <div class="card-body shadow rounded">
+                <form action="/goals" method="post">
+
+                    <h6>Calculate caloric expense automatically or set manually?</h6>
+                        <input checked name="auto_or_manual" type="radio" id="auto" value="auto">
+                        <label for="auto">Automatic</label>
+                        <input name="auto_or_manual" type="radio" id="manual" value="manual">
+                        <label for="manual">Manual</label>
+
+                    <h6 class="mt-4">Set caloric expense automatically:</h6>
+                    <div class="row">
+                        <div class="col">
+                            <select class="form-select form-select-sm mx-0" name="gender">
+                                <option disabled selected>Gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select class="form-select form-select-sm mx-0" name="age">
+                                <option disabled selected>Age</option>
+                                <option>From 18 to 30</option>
+                                <option>From 30 to 60</option>
+                                <option>Over 60</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select class="form-select form-select-sm mx-0" name="activity">
+                                <option disabled selected>Exercise today?</option>
+                                <option>No/light intensity</option>
+                                <option>Medium intensity</option>
+                                <option>High intensity</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h6 class="mt-4">Set caloric expense manually:</h6>
+                    <input class="form-control-sm" autocomplete="off" min="1" name="manual_intake" placeholder="Expense(format: xxxx)" step="1" type="number">
+
+                    <h6 class="mt-4">Surplus or Deficit?</h6>
+                    <p class="text-start text-secondary fst-italic">Don't go too hard on surplus and deficit! Our body reacts better to slower transitions. Keep the surplus or deficit to a maximum of 500 kcal a day.</p>
+                    <div class="row">
+                        <div class="col">
+                            <select class="form-select form-select mx-0" name="sd">
+                                <option selected>Surplus</option>
+                                <option>Deficit</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <input class="form-control" autocomplete="off" min="1" name="sd_value" placeholder="Goal (kcal): (format: xxx)" step="1" type="number">
+                        </div>
+                    </div>
+
+
+                    <h6 class="mt-4">Set your macros:</h6>
+                    <p class="text-start text-secondary fst-italic">And here are our macronutrients! There are three kinds of macros: proteins, fats and carbohydrates (carbs).</p>
+                    <p class="text-start text-secondary fst-italic">You can research macro strategies for yourself, but a good starting point is 2 grams of protein per body weight kg and 0.8 grams of fat per body weight kg. Carbs could start from 2 grams (weight loss) to 4 grams (weight gain).</p>
+                    <input class="form-control" autocomplete="off" min="0" name="proteins" placeholder="Protein (g/kg): (format: x.xx)" step="0.01" type="number"><br>
+                    <input class="form-control" autocomplete="off" min="0" name="fats" placeholder="Fat (g/kg): (format: x.xx)" step="0.01" type="number"><br>
+                    <input class="form-control" autocomplete="off" min="0" name="carbs" placeholder="Carbs (g/kg): (format: x.xx)" step="0.01" type="number"><br>
+
+                    <button class="btn btn-success mt-4" type="submit">Submit!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

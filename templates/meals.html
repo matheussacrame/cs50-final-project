@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Meals
+{% endblock %}
+
+{% block main %}
+<h2 class="text-center">Register your meals!</h2>
+<hr>
+<div class="d-flex flex-wrap row">
+    <div class="col-sm py-2 pe-5 text-start">
+        <p>This is where you register your meals! Submit each <b>food name</b> (written as you registered) and quantity in grams.</p>
+        <p>All the rest is done for you and shown at your homepage!</p>
+    </div>
+    <div class="col-sm p-2 text-center">
+        <div class="card">
+            <div class="card-body shadow rounded">
+                <form action="/meals" method="post">
+                    <select class="form-select form-select-sm m-2" name="option">
+                        <option selected>Add meal</option>
+                        <option>Remove meal</option>
+                    </select>
+                    <input class="form-control m-2" autocomplete="off" autofocus name="food" placeholder="Food name" type="text">
+                    <input class="form-control m-2" autocomplete="off" min="0" name="quantity" placeholder="Quantity (format: xxx)" step="1" type="number">
+                    <button class="btn btn-success mt-4" type="submit">Submit!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
